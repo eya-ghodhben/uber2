@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drivers List</title>
+</head>
+<body>
+    <h1>Drivers List</h1>
+    <a href="{{ url_for('add_driver') }}">Add a new driver</a>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>License</th>
+                <th>Available</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for driver in drivers %}
+            <tr>
+                <td>{{ driver.name }}</td>
+                <td>{{ driver.license }}</td>
+                <td>{{ 'Yes' if driver.available else 'No' }}</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="3">No drivers available.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
+

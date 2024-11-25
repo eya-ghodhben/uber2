@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment API</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h1 { color: #4CAF50; }
+        form { margin-bottom: 20px; }
+        input[type="number"], input[type="text"], input[type="submit"] { padding: 10px; font-size: 14px; margin: 5px; }
+        .response { margin-top: 20px; padding: 10px; border: 1px solid #ccc; }
+        .error { color: red; }
+        .success { color: green; }
+    </style>
+</head>
+<body>
+
+    <h1>Payment API</h1>
+
+    <!-- Create Payment Form -->
+    <h2>Process Payment</h2>
+    <form id="create-payment-form">
+        <label for="amount">Amount:</label>
+        <input type="number" id="amount" name="amount" required>
+        <label for="status">Status:</label>
+        <input type="text" id="status" name="status" required value="pending">
+        <input type="submit" value="Process Payment">
+    </form>
+
+    <div id="create-response" class="response"></div>
+
+    <!-- Get Payment Status Form -->
+    <h2>Get Payment Status</h2>
+    <form id="get-payment-form">
+        <label for="payment-id">Payment ID:</label>
+        <input type="text" id="payment-id" name="payment-id" required>
+        <input type="submit" value="Get Payment Status">
+    </form>
+
+    <div id="get-response" class="response"></div>
+
+    <!-- Refund Payment Form -->
+    <h2>Refund Payment</h2>
+    <form id="refund-payment-form">
+        <label for="refund-payment-id">Payment ID:</label>
+        <input type="text" id="refund-payment-id" name="refund-payment-id" required>
+        <input type="submit" value="Refund Payment">
+    </form>
+
+    <div id="refund-response" class="response"></div>
+
+    <script>
+        document.getElementById('create-payment-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const amount = document.getElementById('amount').value;
+            const status = document.getElementById('status').value;
+            
+            fetch('/api/payments', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ amount: amount, status: status })
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('create-response').innerHTML = `<p class="success">Payment processed! ID: ${data.payment_id}</p>`;
+            })
+            .catch(error => {
+                document.getElementById('create-response').innerHTML = `<p class="error">Error: ${error.message}</p>`;
+            });
+        });
+
+        document.getElementById('get-payment-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const paymentId = document.getElementById('payment-id').value;
+
+            fetch(`/api/payments/${paymentId}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    document.getElementById('get-response').innerHTML = `<p class="error">${data.error}</p>`;
+                } else {
+                    document.getElementById('get-response').innerHTML = `<p class="success">Amount: ${data.amount}, Status: ${data.status}</p>`;
+                }
+            })
+            .catch(error => {
+                document.getElementById('get-response').innerHTML = `<p class="error">Error: ${error.message}</p>`;
+            });
+        });
+
+        document.getElementById('refund-payment-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const paymentId = document.getElementById('refund-payment-id').value;
+
+            fetch(`/api/payments/${paymentId}/refund`, {
+                method: 'PUT'
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('refund-response').innerHTML = `<p class="success">${data.message}</p>`;
+            })
+            .catch(error => {
+                document.getElementById('refund-response').innerHTML = `<p class="error">Error: ${error.message}</p>`;
+            });
+        });
+    </script>
+</body>
+</html>
+
