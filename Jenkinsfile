@@ -2,8 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_HUB_USERNAME = 'eyaghodhben' // Votre nom d'utilisateur Docker Hub
-        DOCKER_HUB_PASSWORD = 'eya@09112002' // Votre mot de passe Docker Hub
+        DOCKER_HUB_CREDS = credentials('docker-hub-creds') // Reference the Jenkins credentials ID
     }
 
     stages {
@@ -11,14 +10,12 @@ pipeline {
             steps {
                 echo 'Cloning the repository from GitHub...'
                 git url: 'https://github.com/eya-ghodhben/uber2.git'
-
             }
         }
 
         stage('Build Docker Images') {
             steps {
                 echo 'Building Docker images for all microservices...'
-                // Construction des images pour chaque microservice
                 sh 'docker build -t payment-service:latest -f Dockerfile .'
                 sh 'docker build -t driver-service:latest -f Dockerfile .'
                 sh 'docker build -t rider-service:latest -f Dockerfile .'
@@ -29,12 +26,10 @@ pipeline {
         stage('Push to Docker Hub') {
             steps {
                 echo 'Logging in to Docker Hub...'
-                // Connexion sécurisée à Docker Hub
                 sh """
-                    echo $DOCKER_HUB_PASSWORD | docker login -u $DOCKER_HUB_USERNAME --password-stdin
+                    echo ${DOCKER_HUB_CREDS_PSW} | docker login -u ${DOCKER_HUB_CREDS_USR} --password-stdin
                 """
                 echo 'Pushing Docker images to Docker Hub...'
-                // Push des images vers Docker Hub
                 sh 'docker push payment-service:latest'
                 sh 'docker push driver-service:latest'
                 sh 'docker push rider-service:latest'
@@ -45,7 +40,6 @@ pipeline {
         stage('Deploy to Kubernetes') {
             steps {
                 echo 'Deploying microservices to Kubernetes...'
-                // Application des fichiers de déploiement Kubernetes
                 sh 'kubectl apply -f mongo-deployment.yaml'
                 sh 'kubectl apply -f payment-deployment.yaml'
                 sh 'kubectl apply -f deployment.yaml'
