@@ -17,10 +17,10 @@ pipeline {
         stage('Build Docker Images') {
             steps {
                 echo 'Building Docker images for all microservices...'
-                sh 'docker build -t payment-service:latest -f payment-service/Dockerfile .'
-                sh 'docker build -t driver-service:latest -f driver-service/Dockerfile .'
-                sh 'docker build -t rider-service:latest -f rider-service/Dockerfile .'
-                sh 'docker build -t ride-service:latest -f ride-service/Dockerfile .'
+                sh 'docker build -t islem0512/payment-service:latest -f payment-service/Dockerfile .'
+                sh 'docker build -t islem0512/driver-service:latest -f driver-service/Dockerfile .'
+                sh 'docker build -t islem0512/rider-service:latest -f rider-service/Dockerfile .'
+                sh 'docker build -t islem0512/ride-service:latest -f ride-service/Dockerfile .'
             }
         }
 
@@ -31,10 +31,10 @@ pipeline {
                     echo ${DOCKER_HUB_CREDS_PSW} | docker login -u ${DOCKER_HUB_CREDS_USR} --password-stdin
                 """
                 echo 'Pushing Docker images to Docker Hub...'
-                sh 'docker push payment-service:latest'
-                sh 'docker push driver-service:latest'
-                sh 'docker push rider-service:latest'
-                sh 'docker push ride-service:latest'
+                sh 'docker push islem0512/payment-service:latest'
+                sh 'docker push islem0512/driver-service:latest'
+                sh 'docker push islem0512/rider-service:latest'
+                sh 'docker push islem0512/ride-service:latest'
             }
         }
 
