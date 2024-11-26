@@ -54,7 +54,7 @@ pipeline {
             echo 'Pipeline execution completed!'
         }
         success {
-            echo 'Pipeline executed successfull!'
+            echo 'Pipeline executed successfully!'
         }
         failure {
             echo 'Pipeline failed. Please check the logs.'
