@@ -5,7 +5,7 @@ FROM python:3.9
 WORKDIR /app
 
 # Copier le fichier requirements.txt dans le conteneur pour installer les dépendances
-COPY requirements.txt /app/
+COPY driver-service/requirements.txt /app/requirements.txt
 
 # Installer les dépendances Python
 RUN pip install --no-cache-dir -r requirements.txt
