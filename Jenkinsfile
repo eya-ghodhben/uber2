@@ -41,7 +41,6 @@ pipeline {
         stage('Deploy to Kubernetes') {
             steps {
                 echo 'Deploying microservices to Kubernetes...'
-                sh 'kubectl apply -f mongo-deployment.yaml'
                 sh 'kubectl apply -f payment-deployment.yaml'
                 sh 'kubectl apply -f deployment.yaml'
                 sh 'kubectl apply -f rider-deployment.yaml'
