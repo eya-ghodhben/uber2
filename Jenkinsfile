@@ -17,10 +17,10 @@ pipeline {
         stage('Build Docker Images') {
             steps {
                 echo 'Building Docker images for all microservices...'
-                sh 'docker build -t payment-service:latest -f Dockerfile .'
-                sh 'docker build -t driver-service:latest -f Dockerfile .'
-                sh 'docker build -t rider-service:latest -f Dockerfile .'
-                sh 'docker build -t ride-service:latest -f Dockerfile .'
+                sh 'docker build -t payment-service:latest -f payment-service/Dockerfile .'
+                sh 'docker build -t driver-service:latest -f driver-service/Dockerfile .'
+                sh 'docker build -t rider-service:latest -f rider-service/Dockerfile .'
+                sh 'docker build -t ride-service:latest -f ride-service/Dockerfile .'
             }
         }
 
