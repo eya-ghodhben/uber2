@@ -41,10 +41,10 @@ pipeline {
         stage('Deploy to Kubernetes') {
             steps {
                 echo 'Deploying microservices to Kubernetes...'
-                sh 'kubectl apply -f payment-deployment.yaml'
-                sh 'kubectl apply -f deployment.yaml'
-                sh 'kubectl apply -f rider-deployment.yaml'
-                sh 'kubectl apply -f ride-deployment.yaml'
+                sh 'kubectl apply -f payment-service/payment-deployment.yaml'
+                sh 'kubectl apply -f driver-service/driver-deployment.yaml'
+                sh 'kubectl apply -f rider-service/rider-deployment.yaml'
+                sh 'kubectl apply -f ride-service/ride-deployment.yaml'
             }
         }
     }
