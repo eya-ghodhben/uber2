@@ -9,7 +9,8 @@ pipeline {
         stage('Clone Repository') {
             steps {
                 echo 'Cloning the repository from GitHub...'
-                git url: 'https://github.com/eya-ghodhben/uber2.git'
+                git url: 'https://github.com/eya-ghodhben/uber2.git', branch: 'main'
+
             }
         }
 
