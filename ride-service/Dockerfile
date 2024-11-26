@@ -5,7 +5,7 @@ FROM python:3.9
 WORKDIR /app
 
 # Copy the current directory contents into the container
-COPY . /app
+COPY ride-service/requirements.txt /app/requirements.txt
 
 # Install the dependencies
 RUN pip install -r requirements.txt
