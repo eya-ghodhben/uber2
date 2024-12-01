@@ -1,4 +1,3 @@
-
 pipeline {
     agent any
 
@@ -38,6 +37,17 @@ pipeline {
                 sh 'docker push islem0512/ride-service:latest'
             }
         }
+
+        stage('Deploy to Kubernetes') {
+            steps {
+                echo 'Deploying microservices to Kubernetes...'
+                sh 'kubectl apply -f payment-service/payment-service.yaml --validate=false' 
+                sh 'kubectl apply -f driver-service/driver-service.yaml --validate=false'
+                sh 'kubectl apply -f rider-service/rider-service.yaml --validate=false'
+                sh 'kubectl apply -f ride-service/ride-service.yaml --validate=false'
+            }
+        }
+    }
 
     post {
         always {
