@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drive with Ride Hailing</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        .navContainerWrap {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 30px;
+            background-color: #333;
+            color: white;
+        }
+
+        .nav-left,
+        .nav-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .menu-list {
+            margin: 0 15px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .signup-btn {
+            padding: 10px 20px;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .main-container {
+            display: flex;
+            justify-content: space-between;
+            padding: 50px;
+        }
+
+        .main-left {
+            width: 50%;
+            padding: 20px;
+        }
+
+        .main-left h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .main-left p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .location-input,
+        .vehicle-input,
+        .payment-method {
+            margin-bottom: 20px;
+        }
+
+        .location-input label,
+        .vehicle-input label,
+        .payment-method label {
+            display: block;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .location-input input,
+        .vehicle-input select,
+        .payment-method select {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .price-container {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .price-container span {
+            font-size: 24px;
+            color: #28a745;
+        }
+
+        .confirm-btn {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .confirm-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .back-home-btn {
+            padding: 10px 20px;
+            background-color: #6c757d;
+            color: white;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .back-home-btn:hover {
+            background-color: #5a6268;
+        }
+
+        .main-right {
+            width: 50%;
+        }
+
+        .main-right img {
+            width: 100%;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- -------------Navigation Bar------------ -->
+    <div class="navContainerWrap">
+        <div class="nav-left">
+            <p class="logo">
+                Ride Hailing
+            </p>
+            <p class="menu-list" onclick="location.href='../ride-service/business.html'">Business</p>
+            <div class="text-icon">
+                <p class="menu-list" onclick="location.href='../ride-service/about.html'">About</p>
+                <span class="material-symbols-outlined">
+                    expand_more
+                </span>
+            </div>
+        </div>
+        <div class="nav-right">
+            <div class="text-icon">
+                <span class="material-symbols-outlined">
+                    language
+                </span>
+                <p class="menu-list">EN</p>
+            </div>
+            <p class="menu-list">Help</p>
+            <p class="menu-list" onclick="location.href='../rider-service/login.html'">Log In</p>
+            <p class="signup-btn" onclick="location.href='../rider-service/signup.html'">Sign up</p>
+        </div>
+    </div>
+
+    <!-- ------------------Main Container-------------- -->
+    <div class="main-container">
+        <div class="main-left">
+            <h1>Drive with Ride Hailing</h1>
+            <p>Become a driver and start earning money by driving. It's easy to get started!</p>
+
+            <!-- Input for start and end locations -->
+            <div class="location-input">
+                <label for="start-location">Start Location:</label>
+                <input type="text" id="start-location" placeholder="Enter your start location">
+
+                <label for="end-location">End Location:</label>
+                <input type="text" id="end-location" placeholder="Enter your end location">
+            </div>
+
+            <!-- Vehicle Type Selection -->
+            <div class="vehicle-input">
+                <label for="vehicle-type">Select Vehicle Type:</label>
+                <select id="vehicle-type">
+                    <option value="moto">Moto</option>
+                    <option value="van">Van</option>
+                    <option value="car">Car</option>
+                    <option value="tuktuk">Tuk-Tuk</option>
+                </select>
+            </div>
+
+            <!-- Payment Method Selection -->
+            <div class="payment-method">
+                <label for="payment-type">Select Payment Method:</label>
+                <select id="payment-type">
+                    <option value="card">Pay with Card</option>
+                    <option value="cash">Pay with Cash</option>
+                </select>
+            </div>
+
+            <!-- Display the calculated price -->
+            <div class="price-container">
+                <p>Estimated Fare: <span id="fare">$0.00</span></p>
+            </div>
+
+            <button class="confirm-btn" onclick="confirmRoute()">Confirm Ride</button>
+
+            <!-- Back to Home Button -->
+            <a href="../ride-service/index.html" class="back-home-btn">Back to Home</a>
+        </div>
+        <div class="main-right">
+            <img src="driver.png" alt="Driver Image">
+        </div>
+    </div>
+
+    <script>
+        // Function to calculate the fare based on the start and end locations and vehicle type
+        function calculateFare(startLocation, endLocation, vehicleType) {
+            // Mockup for the distance calculation (you can replace this with real distance calculation)
+            const distanceInKm = Math.random() * 10;  // Mock: Random distance between 0 to 10 km
+
+            // Vehicle fare multipliers based on the type of vehicle
+            const vehicleMultipliers = {
+                moto: 0.5,
+                van: 1.5,
+                car: 1,
+                tuktuk: 0.8
+            };
+
+            // Base fare calculation
+            const baseFare = 5; // base fare for the first 1 km
+            const extraFarePerKm = 1; // additional fare for each extra km
+            let fare = baseFare;
+
+            // Apply extra fare for distance greater than 1 km
+            if (distanceInKm > 1) {
+                fare += (distanceInKm - 1) * extraFarePerKm;
+            }
+
+            // Apply vehicle type multiplier
+            fare *= vehicleMultipliers[vehicleType];
+
+            return { fare: fare.toFixed(2), distance: distanceInKm.toFixed(2) };
+        }
+
+        // Function to confirm the route and calculate the price
+        function confirmRoute() {
+            var startLocation = document.getElementById("start-location").value;
+            var endLocation = document.getElementById("end-location").value;
+            var vehicleType = document.getElementById("vehicle-type").value;
+            var paymentType = document.getElementById("payment-type").value;
+
+            if (startLocation && endLocation) {
+                // Calculate the fare based on selections
+                var result = calculateFare(startLocation, endLocation, vehicleType);
+                var fare = result.fare;
+                var distance = result.distance;
+
+                // Display the calculated fare
+                document.getElementById("fare").textContent = "$" + fare;
+
+                // Save the calculated fare, vehicle type, distance, and payment method in localStorage
+                localStorage.setItem("fare", fare);
+                localStorage.setItem("vehicleType", vehicleType);
+                localStorage.setItem("distance", distance);
+                localStorage.setItem("paymentType", paymentType);
+
+                // Show confirmation
+                alert("Your ride is confirmed! Fare: $" + fare + ", Distance: " + distance + " km, Payment Method: " + paymentType);
+            } else {
+                alert("Please fill in both start and end locations.");
+            }
+        }
+    </script>
+
+</body>
+
+</html>
