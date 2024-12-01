@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select and Confirm Route (Logical)</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        #map {
+            height: 100vh;
+            width: 100%;
+        }
+        .container {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .container button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .container button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+
+    <!-- Include Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <!-- Include Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <!-- Include Leaflet Routing Machine JS -->
+    <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
+</head>
+<body>
+    <div id="map"></div>
+    <div class="container">
+        <h3>Select Path</h3>
+        <p>Click on the map to select the start and end points.</p>
+        <button onclick="confirmRoute()">Confirm Route</button>
+    </div>
+
+    <script>
+        // Initialize the map centered at a default location (e.g., London)
+        var map = L.map('map').setView([51.505, -0.09], 13);
+
+        // Add OpenStreetMap tile layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        var startPoint = null;
+        var endPoint = null;
+
+        // Function to place markers and log the logical coordinates (without rendering)
+        map.on('click', function(e) {
+            // Check if both points are already selected
+            if (startPoint && endPoint) return;
+
+            // Log the coordinates for the first click (start point)
+            if (!startPoint) {
+                startPoint = e.latlng;
+                console.log("Start Point selected:", startPoint); // Debug log
+            } 
+            // Log the coordinates for the second click (end point)
+            else if (!endPoint) {
+                endPoint = e.latlng;
+                console.log("End Point selected:", endPoint); // Debug log
+            }
+        });
+
+        // Function to confirm and alert route info
+        function confirmRoute() {
+            if (startPoint && endPoint) {
+                alert("Route confirmed! Start: " + startPoint.toString() + " End: " + endPoint.toString());
+            } else {
+                alert("Please select both start and end points.");
+            }
+        }
+    </script>
+</body>
+</html>

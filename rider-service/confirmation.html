@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirm Path</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        #map {
+            height: 100vh;
+            width: 100%;
+        }
+        .container {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .container button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .container button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <div class="container">
+        <h3>Select Path</h3>
+        <p>Click to choose your start and end points on the map.</p>
+        <button onclick="getRoute()">Confirm Route</button>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script>
+        // Initialize map with default coordinates (London)
+        var map = L.map('map').setView([51.505, -0.09], 13);
+
+        // Add OpenStreetMap tile layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        var startMarker, endMarker;
+
+        // Add event listener to place markers on map
+        map.on('click', function(e) {
+            // Check if start point is set
+            if (!startMarker) {
+                startMarker = L.marker(e.latlng).addTo(map).bindPopup("Start Point").openPopup();
+            }
+            // Check if end point is set after start point
+            else if (!endMarker) {
+                endMarker = L.marker(e.latlng).addTo(map).bindPopup("End Point").openPopup();
+            }
+        });
+
+        // Function to confirm the route and store the distance
+        function getRoute() {
+            if (startMarker && endMarker) {
+                // Retrieve the coordinates of the start and end points
+                const startCoordinates = startMarker.getLatLng();
+                const endCoordinates = endMarker.getLatLng();
+
+                // Calculate the distance in kilometers
+                const distance = map.distance(startCoordinates, endCoordinates) / 1000; // Convert from meters to kilometers
+
+                // Store the calculated distance in localStorage (rounded to 2 decimal places)
+                localStorage.setItem("distance", distance.toFixed(2));
+
+                // Alert the user with the route and the calculated distance
+                alert(`Route confirmed! Distance: ${distance.toFixed(2)} km`);
+
+                // Redirect to payment page after the user clicks "OK" on the alert
+                window.location.href = "../payment-service/payment.html"; // Updated path to payment page
+            } else {
+                alert("Please select both start and end points.");
+            }
+        }
+    </script>
+</body>
+</html>
