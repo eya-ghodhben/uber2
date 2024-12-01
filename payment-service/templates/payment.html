@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        .container {
+            padding: 20px;
+            text-align: center;
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .container h2 {
+            margin-bottom: 20px;
+        }
+        .container p {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+        .price {
+            font-size: 24px;
+            font-weight: bold;
+            color: #28a745;
+        }
+        .payment-method {
+            margin-top: 30px;
+        }
+        .payment-button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .payment-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Complete Your Payment</h2>
+        <p>Your estimated fare is:</p>
+        <p class="price" id="fare">$0.00</p>
+
+        <div class="payment-method">
+            <button class="payment-button" onclick="payWithCard()">Pay with Card</button>
+            <button class="payment-button" onclick="payWithCash()">Pay with Cash</button>
+        </div>
+    </div>
+
+    <script>
+        // Fetch the distance from localStorage
+        const distance = parseFloat(localStorage.getItem("distance"));
+
+        // Calculate the price based on the distance
+        const baseFare = 5; // base fare for the first 1 km
+        const extraFarePerKm = 1; // additional fare for each extra km
+        let fare = baseFare;
+
+        if (distance > 1) {
+            fare += (distance - 1) * extraFarePerKm; // Add extra fare for distance greater than 1 km
+        }
+
+        // Display the calculated fare
+        document.getElementById("fare").textContent = `$${fare.toFixed(2)}`;
+
+        // Functions for different payment methods
+        function payWithCard() {
+            // Redirect to the payment page for card payment
+            window.location.href = "pay-with-card.html";
+        }
+
+        function payWithCash() {
+            // Redirect to the payment page for cash payment
+            window.location.href = "pay-with-cash.html";
+        }
+    </script>
+</body>
+</html>
