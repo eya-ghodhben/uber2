@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ride with Ride Hailing</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
+
+        * {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f4f4f4;
+            color: #333;
+            font-size: 16px;
+        }
+
+        .page-header {
+            background-color: #000;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .navContainerWrap {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 50px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .nav-right {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .signup-btn {
+            padding: 10px 20px;
+            background-color: #fff;
+            color: #000;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .signup-btn:hover {
+            background-color: #ddd;
+        }
+
+        .header-content h1 {
+            font-size: 36px;
+            font-weight: 700;
+        }
+
+        .header-content p {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        .ride-btn-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 50px;
+        }
+
+        .ride-btn {
+            padding: 15px 30px;
+            background-color: #000;
+            color: #fff;
+            border: none;
+            border-radius: 25px;
+            font-size: 18px;
+            cursor: pointer;
+            margin: 0 10px;
+        }
+
+        .ride-btn:hover {
+            background-color: #333;
+        }
+
+        .back-btn {
+            padding: 12px 30px;
+            background-color: #000;
+            color: #fff;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            display: block;
+            margin: 30px auto;
+        }
+
+        .back-btn:hover {
+            background-color: #333;
+        }
+
+        .footer {
+            background-color: #000;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .footer-section p {
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <header class="page-header">
+        <div class="navContainerWrap">
+            <div class="logo">Ride Hailing</div>
+            <div class="nav-right">
+                <!-- Corrected path to Sign Up -->
+                <button class="signup-btn" onclick="location.href='../rider-service/signup.html'">Sign Up</button>
+            </div>
+        </div>
+        <div class="header-content">
+            <h1>Ride with Ride Hailing</h1>
+            <p>Request a ride and go anywhere you want!</p>
+        </div>
+    </header>
+    
+    <main>
+        <section class="ride-btn-container">
+            <!-- Corrected path to Request Ride -->
+            <button class="ride-btn" onclick="location.href='../rider-service/request.html'">Request Ride</button>
+        </section>
+
+        <!-- Corrected path to Home Page -->
+        <button class="back-btn" onclick="location.href='index.html'">Back to Home</button>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-section">
+            <p>© 2024 Uber Technologies, Inc.</p>
+        </div>
+    </footer>
+</body>
+</html>

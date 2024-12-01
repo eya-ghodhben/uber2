@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <style>
+        /* General reset and font */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #000;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 50px 100px;
+            background-color: #f4f4f4;
+        }
+
+        .about-section {
+            width: 100%;
+            max-width: 1200px;
+            margin-bottom: 60px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-section h2 {
+            font-size: 30px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .about-section p {
+            font-size: 18px;
+            color: #545454;
+            line-height: 1.6;
+        }
+
+        .team-section {
+            width: 100%;
+            max-width: 1200px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-top: 60px;
+        }
+
+        .team-section h2 {
+            font-size: 30px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .team-members {
+            display: flex;
+            justify-content: space-around;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .team-member {
+            width: 30%;
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .team-member img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+
+        .team-member h3 {
+            font-size: 20px;
+            font-weight: bold;
+            color: #000;
+        }
+
+        .team-member p {
+            color: #545454;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .team-member {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <h1>About Us</h1>
+        <p>Learn more about our company and the team behind it</p>
+    </header>
+
+    <!-- Main Content Section -->
+    <div class="main-content">
+
+        <!-- About Us Section -->
+        <div class="about-section">
+            <h2>Our Story</h2>
+            <p>
+                We are a leading company in the industry, committed to providing the best services to our customers. 
+                Our journey started with a simple idea and has evolved into a successful business offering a wide range 
+                of products and services that cater to our clients' needs. With a passionate team, we are always striving 
+                to innovate and deliver exceptional value.
+            </p>
+        </div>
+
+        <!-- Team Section -->
+        <div class="team-section">
+            <h2>Meet Our Team</h2>
+            <div class="team-members">
+                <div class="team-member">
+                    <img src="sis.jpg" alt="Team Member 1">
+                    <h3>Jane Doe</h3>
+                    <p>CEO & Founder</p>
+                </div>
+                <div class="team-member">
+                    <img src="spider.jpg" alt="Team Member 2">
+                    <h3>John Smith</h3>
+                    <p>Chief Marketing Officer</p>
+                </div>
+                <div class="team-member">
+                    <img src="bro.jpg" alt="Team Member 3">
+                    <h3>mark Lee</h3>
+                    <p>Head of Development</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 Our Business. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
