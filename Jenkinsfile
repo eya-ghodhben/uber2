@@ -39,17 +39,6 @@ pipeline {
             }
         }
 
-        stage('Deploy to Kubernetes') {
-            steps {
-                echo 'Deploying microservices to Kubernetes...'
-                sh 'kubectl apply -f payment-service/payment-service.yaml --validate=false' 
-                sh 'kubectl apply -f driver-service/driver-service.yaml --validate=false'
-                sh 'kubectl apply -f rider-service/rider-service.yaml --validate=false'
-                sh 'kubectl apply -f ride-service/ride-service.yaml --validate=false'
-            }
-        }
-    }
-
     post {
         always {
             echo 'Pipeline execution completed!'
