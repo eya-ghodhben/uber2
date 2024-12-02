@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pay with Card</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+        }
+        .container h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .container form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .container input {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .container button {
+            padding: 10px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .container button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Pay with Card</h1>
+        <form onsubmit="submitCardPayment(event)">
+            <input type="text" placeholder="Card Number" required>
+            <input type="text" placeholder="Cardholder Name" required>
+            <input type="text" placeholder="Expiry Date (MM/YY)" required>
+            <input type="text" placeholder="CVV" required>
+            <button type="submit">Pay Now</button>
+        </form>
+    </div>
+
+    <script>
+        function submitCardPayment(event) {
+            event.preventDefault();
+            alert("Payment successful with card!");
+            window.location.href = "success.html";
+        }
+    </script>
+</body>
+</html>
